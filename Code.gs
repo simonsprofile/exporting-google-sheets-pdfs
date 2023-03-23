@@ -20,46 +20,46 @@ const exportPDF = () => {
     ['sheetnames',           false       ], // Sheet name
     ['attachment',           true        ], // Uncertain, true works
     ['fzr',                  false       ], // Uncertain, false works
-	];
+  ];
 
-	// URL Params
-	let url_params = '?';
-	for (p in print_options) {
-		url_params = (
-			`${url_params}` +
-			`${print_options[p][0]}=${print_options[p][1]}` +
-			`${(p == (print_options.length - 1)) ? '' : '&'}`
-		);
-	}
-	let url = (
-		`https://docs.google.com/spreadsheets/d/${ssID}/export${url_params}`
-	);
+  // URL Params
+  let url_params = '?';
+  for (p in print_options) {
+    url_params = (
+      `${url_params}` +
+      `${print_options[p][0]}=${print_options[p][1]}` +
+      `${(p == (print_options.length - 1)) ? '' : '&'}`
+    );
+  }
+  let url = (
+    `https://docs.google.com/spreadsheets/d/${ssID}/export${url_params}`
+  );
 
-	// Export PDF to Blob
-	let options = {
-		method: 'GET', 
-		headers: { 
-			'Authorization': `Bearer ${ScriptApp.getOAuthToken()}` 
-		}
-	};
-	let blob = UrlFetchApp.fetch(url, options).getBlob();
-	let filename = 'pdf_exported_from_sheets';
+  // Export PDF to Blob
+  let options = {
+    method: 'GET', 
+    headers: { 
+      'Authorization': `Bearer ${ScriptApp.getOAuthToken()}` 
+    }
+  };
+  let blob = UrlFetchApp.fetch(url, options).getBlob();
+  let filename = 'pdf_exported_from_sheets';
 
-	// Send Blob as File Attached to Email
-	let email_options = {
-		attachments: [{
-			fileName: `${filename}.pdf`,
-			content: blob.getBytes(),
-			mimeType: "application/pdf"
-		}]
-	};
-	MailApp.sendEmail(
-		'fake_recipient@fake-email.com',
-		'Email Subject',
-		'Email Body',
-		email_options
-	);
+  // Send Blob as File Attached to Email
+  let email_options = {
+    attachments: [{
+      fileName: `${filename}.pdf`,
+      content: blob.getBytes(),
+      mimeType: "application/pdf"
+    }]
+  };
+  MailApp.sendEmail(
+    'fake_recipient@fake-email.com',
+    'Email Subject',
+    'Email Body',
+    email_options
+  );
 
-	// Save Blob as File to Google Drive
-	DriveApp.createFile(blob.setName(`${filename}.pdf`));
-}
+  // Save Blob as File to Google Drive
+  DriveApp.createFile(blob.setName(`${filename}.pdf`));
+  }
