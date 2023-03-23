@@ -2,7 +2,7 @@ const exportPDF = () => {
   const ssID = 'spreadsheet id';
   const sID = 'sheet id';
   const print_options = [
-  	['gid',                  sID,        ], // Sheet ID (omit for all sheets as pages)
+    ['gid',                  sID,        ], // Sheet ID (omit for all sheets as pages)
     ['format',               'pdf'       ], // File type
     ['size',                 7           ], // Paper size
     ['portrait',             true        ], // Page Orientation
