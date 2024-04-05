@@ -1,4 +1,4 @@
-const exportPDF = () => {
+const exportPDFBlob = () => {
   const ssID = 'spreadsheet id';
   const sID = 'sheet id';
   const print_options = [
@@ -6,6 +6,7 @@ const exportPDF = () => {
     ['format',               'pdf'       ], // File type
     ['size',                 7           ], // Paper size
     ['portrait',             true        ], // Page Orientation
+    ['fith',                 true        ],
     ['fitw',                 false       ], // Scale > Fit to width
     ['top_margin',           0.75        ], // Margin in inches (all four are required)
     ['right_margin',         0.25        ], //
@@ -18,8 +19,13 @@ const exportPDF = () => {
     ['pagenum',              'UNDEFINED' ], // Page numbers
     ['printtitle',           false       ], // Workbook title
     ['sheetnames',           false       ], // Sheet name
-    ['attachment',           true        ], // Uncertain, true works
-    ['fzr',                  false       ], // Uncertain, false works
+    ['fzr',                  false       ], // Freeze no. of rows (repeat on each page)
+    ['fzc',                  false       ], // Freeze no. of columns (repeat on each page)
+    ['r1',                   0           ], // Selection to print, start
+    ['c1',                   0           ], //
+    ['r2',                   100         ], // Selection to print, end
+    ['c2',                   10          ], //
+    ['attachment',           true        ]  // Uncertain, true works
   ];
 
   // URL Params
@@ -43,6 +49,11 @@ const exportPDF = () => {
     }
   };
   let blob = UrlFetchApp.fetch(url, options).getBlob();
+
+  return blob
+}
+
+const emailPDF = (blob) => {
   let filename = 'pdf_exported_from_sheets';
 
   // Send Blob as File Attached to Email
@@ -54,11 +65,15 @@ const exportPDF = () => {
     }]
   };
   MailApp.sendEmail(
-    'fake_recipient@fake-email.com',
+    'supersim65@gmail.com',
     'Email Subject',
     'Email Body',
     email_options
   );
+}
+
+const savePDFToDrive = (blob) => { 
+  let filename = 'pdf_exported_from_sheets';
 
   // Save Blob as File to Google Drive
   DriveApp.createFile(blob.setName(`${filename}.pdf`));
