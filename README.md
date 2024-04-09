@@ -19,7 +19,7 @@ The exportPDF function in this example   demonstrates one method of constructing
   * 9 *(B4)*
   * 10 *(B5)*
 * `portrait` - Page orientation (*portrait* **true**/**false**, don't use *landscape*)
-* `fitw` - *Fit to width*, as in GUI. Have not found parameters for *Fit to height* or *Fit to page* yet, but maybe "fith"?
+* `scale` - Scale data to fit. (**Integer value 1-4**. 1 = *Normal (100%)*, 2 = *Fit to Width*, 3 = *Fit to Height*, 4 = *Fit to Page*. I haven't identified how to custom scale.)
 * `top_margin` - Set margin in inches. Same of course for *bottom_*, *left_* and *right_*. Only seems to work if all four margins are present.
 * `gridlines` - Formatting > Show grid lines. (**true**/**false**)
 * `printnotes` - Formatting > Show notes. (**true**/**false**)

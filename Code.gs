@@ -6,8 +6,7 @@ const exportPDFBlob = () => {
     ['format',               'pdf'       ], // File type
     ['size',                 7           ], // Paper size
     ['portrait',             true        ], // Page Orientation
-    ['fith',                 true        ],
-    ['fitw',                 false       ], // Scale > Fit to width
+    ['scale',                1           ], // Scale (Integer 1-4, see README)
     ['top_margin',           0.75        ], // Margin in inches (all four are required)
     ['right_margin',         0.25        ], //
     ['bottom_margin',        0.75        ], //
@@ -16,14 +15,14 @@ const exportPDFBlob = () => {
     ['printnotes',           false       ], // Show notes
     ['horizontal_alignment', 'CENTER'    ], // Horizontal alignment
     ['vertical_alignment',   'TOP'       ], // Vertical alignment
-    ['pagenum',              'UNDEFINED' ], // Page numbers
-    ['printtitle',           false       ], // Workbook title
-    ['sheetnames',           false       ], // Sheet name
-    ['fzr',                  false       ], // Freeze no. of rows (repeat on each page)
-    ['fzc',                  false       ], // Freeze no. of columns (repeat on each page)
-    ['r1',                   0           ], // Selection to print, start
+    ['pagenum',              'UNDEFINED' ], // Include page numbers
+    ['printtitle',           false       ], // Include Workbook title
+    ['sheetnames',           false       ], // Include Sheet name
+    ['fzr',                  false       ], // Repeat frozen rows on each page
+    ['fzc',                  false       ], // Repeat frozen columns on each page
+    ['r1',                   0           ], // Selection to print, start reference
     ['c1',                   0           ], //
-    ['r2',                   100         ], // Selection to print, end
+    ['r2',                   100         ], // Selection to print, end reference
     ['c2',                   10          ], //
     ['attachment',           true        ]  // Uncertain, true works
   ];
